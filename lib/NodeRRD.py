@@ -52,9 +52,10 @@ class NodeRRD(RRD):
                 '-l', '0',
                 '-Y',
                 'DEF:clients=' + self.filename + ':clients:AVERAGE',
+                'DEF:upstate=' + self.filename + ':upstate:AVERAGE',
                 'VDEF:maxc=clients,MAXIMUM',
-                'CDEF:c=0,clients,ADDNAN',
-                'CDEF:d=clients,UN,maxc,UN,1,maxc,IF,*',
+                'CDEF:c=0.5,clients,ADDNAN,FLOOR',
+                'CDEF:d=upstate,UN,1,upstate,IF,0,EQ,maxc,UN,1,maxc,IF,1,MAX,*',
                 'AREA:c#0F0:up\\l',
                 'AREA:d#F00:down\\l',
                 'LINE1:c#00F:clients connected\\l']

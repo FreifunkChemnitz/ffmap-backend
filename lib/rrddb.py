@@ -10,8 +10,8 @@ class RRD(object):
     def __init__(self,
                  database_directory,
                  image_path,
-                 display_time_global="7d",
-                 display_time_node="1d"):
+                 display_time_global="14d",
+                 display_time_node="7d"):
 
         self.dbPath = database_directory
         self.globalDb = GlobalRRD(self.dbPath)
