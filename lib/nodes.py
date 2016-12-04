@@ -119,6 +119,8 @@ def import_statistics(nodes, stats):
             lambda d: 1 - (d['free'] + d['buffers'] + d['cached']) / d['total'])
         add(node, stats, 'rootfs_usage', ['rootfs_usage'])
         add(node, stats, 'traffic', ['traffic'])
+        add(node, stats, 'gateway', ['gateway'])
+        add(node, stats, 'gateway_nexthop', ['gateway_nexthop'])
         mark_uplink(node, stats)
 
 
