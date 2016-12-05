@@ -18,7 +18,7 @@ def import_vis_data(graph, nodes, vis_data):
 
     edges = filter(lambda d: 'neighbor' in d, vis_data)
     graph.add_edges_from(map(lambda d: (d['router'], d['neighbor'],
-                                        dict(tq=float(d['label']))), edges))
+                                        dict(tq=float(d['label']),src=d['router'],dst=d['neighbor'])), edges))
 
 
 def mark_vpn(graph, vpn_macs):
