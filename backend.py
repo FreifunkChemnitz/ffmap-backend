@@ -139,7 +139,8 @@ def main(params):
 
     graph.mark_vpn(batadv_graph, extract_tunnel(nodedb['nodes']))
 
-    batadv_graph = graph.merge_nodes(batadv_graph)
+    #batadv_graph = graph.merge_nodes(batadv_graph)
+    batadv_graph = graph.to_multigraph(batadv_graph)
     #batadv_graph = graph.to_undirected(batadv_graph)
 
     # write processed data to temporary files in dest dir
