@@ -1,6 +1,7 @@
 import socket
 import time
 
+graphite_timestamp = timestamp = int(time.time())
 
 class Graphite(object):
 
@@ -18,8 +19,6 @@ class Graphite(object):
         return dict(items)
 
     def update(self, prefix, metrics, nodes):
-        timestamp = int(time.time())
-
         sock = socket.socket()
         sock.connect((self.hostname, self.port))
 
@@ -34,7 +33,7 @@ class Graphite(object):
                                 node['nodeinfo']['node_id'].replace(' ', '_'),
                                 metric.replace(' ', '_'),
                                 stats[metric],
-                                timestamp
+                                graphite_timestamp
                             )
                             sock.send(msg.encode('utf-8'))
 
