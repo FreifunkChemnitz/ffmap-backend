@@ -96,7 +96,12 @@ def import_nodeinfo(nodes, nodeinfos, now, assume_online=False):
 
 def reset_statistics(nodes):
     for node in nodes.values():
+        wireless_raw = None
+        if 'statistics' in node and 'wireless_raw' in node['statistics']:
+            wireless_raw = node['statistics']['wireless_raw']
         node['statistics'] = {'clients': 0}
+        if wireless_raw:
+            node['statistics']['wireless_last'] = wireless_raw
 
 
 def import_statistics(nodes, stats):
