@@ -121,6 +121,7 @@ def import_statistics(nodes, stats):
         add(node, stats, 'traffic', ['traffic'])
         add(node, stats, 'gateway', ['gateway'])
         add(node, stats, 'gateway_nexthop', ['gateway_nexthop'])
+        add(node, stats, 'wireless_raw', ['wireless'])
         mark_uplink(node, stats)
 
 
