@@ -27,7 +27,7 @@ def mark_vpn(graph, vpn_macs):
     nodes = reduce(lambda a, b: a | b, components, set())
 
     for node in nodes:
-        for k, v in graph[node].items():
+        for v in graph[node].items():
             v['vpn'] = True
 
 
@@ -41,7 +41,7 @@ def to_multigraph(graph):
                 dict(node_id=data['node_id'])) if data else (node, dict())
 
     digraph = nx.MultiDiGraph()
-    digraph.add_nodes_from(map(map_node, *zip(*graph.nodes_iter(data=True))))
+    digraph.add_nodes_from(map(map_node, *zip(*list(graph.nodes(data=True)))))                               
     digraph.add_edges_from(map(lambda a, b, data: (f(a), f(b), data),
                                *zip(*graph.edges_iter(data=True))))
 
